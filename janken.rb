@@ -6,13 +6,13 @@ class Player
     puts "0:グー, 1:チョキ, 2:パー"
     # 変数「input_hand」にプレイヤーが入力したものを取得して代入します。
       # ヒント! 「getsメソッド」を使用します。
-    input_hand = gets.to_i
+    input_hand = gets.chomp
     # 「input_hand」(取得した値)が「0, 1, 2」のいずれかだとwhileから脱出させ、それ以外だと初めから繰り返させます。
       # ヒント! 「while」と「if」を使用します。
       # 以降の型の例に沿って実装しましょう ※実装する時場合はコメントアウトに注意しましょう
     while true
         # if 条件を書く (「input_hand」(取得した値)が「0, 1, 2」のいずれかの場合だった場合)
-      if input_hand == 0 || input_hand == 1 || input_hand == 2
+      if input_hand == "0" || input_hand == "1" || input_hand == "2"
           # 「input_hand」(取得した値)をそのまま返します。
             # ヒント！ 「return」を使用します。
       return input_hand
@@ -22,7 +22,7 @@ class Player
         puts "もう一度数字を入力してください。"
         puts "0:グー, 1:チョキ, 2:パー"
           # 変数「input_hand」にプレイヤーが入力したものを取得して代入します。
-        input_hand = gets.to_i
+        input_hand = gets.chomp
       end
     end
   end
@@ -31,19 +31,16 @@ end
 class Enemy
   def hand
     # グー、チョキ、パーの値をランダムに出力させます。
-    rand(3)
+    rand(3).to_s
   end
 end
 # プレイヤー(自分)が入力した「0 ~ 2」と、敵がランダムで生成した「0 ~ 2」をじゃんけんをさせて、その結果をコンソール上に出力するロジックを書きます。
 class Janken
   def pon(player_hand, enemy_hand)
-    puts "player_hand #{player_hand}"
-    puts "enemy_hand #{enemy_hand}"
-    binding.irb
     # 変数「janken」に["グー", "チョキ", "パー"]を代入します。
     janken = ["グー", "チョキ", "パー"]
     #「相手の手は#{敵の生成した値}です。」と出力させます。
-    puts "相手の手は#{janken[enemy_hand]}です。"
+    puts "相手の手は#{janken[enemy_hand.to_i]}です。"
     # Playerクラスの戻り値とEnemyクラスの戻り値からじゃんけんするロジックを作成します。
       # 以降の型の例に沿って実装しましょう ※実装する時場合はコメントアウトに注意しましょう
       # if 条件を書く Playerクラスの戻り値(player_hand)とEnemyクラスの戻り値(enemy_hand)の値が同じだった場合
@@ -55,7 +52,7 @@ class Janken
         return true
     #  elsif もしも下記の組み合わせだった場合
       elsif
-        (player_hand == 0 && enemy_hand == 1) || (player_hand == 1 && enemy_hand == 2) || (player_hand == 2 && enemy_hand == 0)
+        (player_hand == "0" && enemy_hand == "1") || (player_hand == "1" && enemy_hand == "2") || (player_hand == "2" && enemy_hand == "0")
       #あなたの勝ちです」を出力します。
         puts "あなたの勝ちです"
       # whileを終了させる「false」を返してじゃんけんを終了させます。
